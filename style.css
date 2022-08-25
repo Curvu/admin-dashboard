@@ -31,14 +31,37 @@ ul {
     background-color: var(--primary-color);
     color: white;
     padding: 20px;
+    text-transform: capitalize;
+    display: grid;
+    grid-template-rows: 40px 2fr 2fr 5fr;
+    gap: 40px;
 }
 
-.sidebar p {
+.sidebar-title p {
     font-size: 2rem;
+    font-weight: 600;
 }
 
 .sidebar div {
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sidebar-title,
+li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+li img {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-links li,
+.sidebar-options li {
+    padding: 10px;
 }
 
 /* Header */
