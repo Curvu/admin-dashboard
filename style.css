@@ -66,22 +66,111 @@ li img {
 
 /* Header */
 .header {
-    padding: 20px;
+    padding: 20px 100px 20px 50px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+#search-bar,
+.profile {
+    display: flex;
+    gap: 32px;
+    align-items: center;
 }
 
 #search-bar input {
     outline: none;
-    height: 28px;
+    height: 24px;
     border: 1px solid #ccc;
     border-radius: 24px;
     padding-left: 12px;
     background-color: var(--secundary-color);
+    font-size: 16px;
+    min-width: 100px;
+    width: 100%;
+}
+
+#search-bar {
+    padding-right: 50px;
+}
+
+#search-bar img,
+.profile img {
+    width: 24px;
+}
+
+.profile {
+    justify-self: end;
+    font-weight: bolder;
+    padding-right: 20px;
+}
+
+.profile-img {
+    background-image: url(https://avatars.githubusercontent.com/u/69159895);
+    min-width: 48px;
+    min-height: 48px;
+    background-size: 48px;
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.exp-profile-img {
+    background-image: url(https://avatars.githubusercontent.com/u/69159895);
+    min-width: 64px;
+    min-height: 64px;
+    background-size: 64px;
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100%;
+}
+
+.expanded-profile {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.expanded-text {
+    display: flex;
+    flex-direction: column;
+    font-weight: bolder;
+}
+
+.expanded-text :last-child {
+    font-size: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-self: center;
+}
+
+.buttons button {
+    background-color: var(--primary-color);
+    color: white;
     font-size: 1rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    border-radius: 20px;
+    border: 0;
+    width: 100px;
+    height: 40px;
+}
+
+.buttons button:hover {
+    opacity: 0.8;
 }
 
 /* Container */
 .container {
     padding: 20px;
-    box-shadow: inset -2px 1px 2px #aaaaaa;
+    box-shadow: inset 1px 3px 2px #aaaaaa;
     background-color: var(--secundary-color);
 }
