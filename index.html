@@ -12,46 +12,81 @@
     <body>
         <main>
             <div class="sidebar">
+                <div class="sidebar-title">
+                    <img src="./src/dashboard.png" alt="dashboard-icon">
+                    <p>dashborad</p>
+                </div>
                 <div class="sidebar-links">
                     <ul>
-                        <li>home</li>
-                        <li>profile</li>
-                        <li>messages</li>
-                        <li>history</li>
-                        <li>tasks</li>
-                        <li>communities</li>
+                        <li>
+                            <img src="./src/home.png" alt="home-icon">
+                            <p>home</p>
+                        </li>
+                        <li>
+                            <img src="./src/profile.png" alt="profile-icon">
+                            profile
+                        </li>
+                        <li>
+                            <img src="./src/messages.png" alt="messages-icon">
+                            messages
+                        </li>
+                        <li>
+                            <img src="./src/history.png" alt="history-icon">
+                            history
+                        </li>
+                        <li>
+                            <img src="./src/tasks.png" alt="tasks-icon">
+                            tasks
+                        </li>
+                        <li>
+                            <img src="./src/communities.png" alt="communities-icon">
+                            communities
+                        </li>
                     </ul>
                 </div>
                 <div class="sidebar-options">
                     <ul>
-                        <li>settings</li>
-                        <li>support</li>
-                        <li>privacy</li>
+                        <li>
+                            <img src="./src/settings.png" alt="settings-icon">
+                            settings
+                        </li>
+                        <li>
+                            <img src="./src/support.png" alt="support-icon">
+                            support
+                        </li>
+                        <li>
+                            <img src="./src/privacy.png" alt="privacy-icon">
+                            privacy
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="header">
-                <div class="header-top">
-                    <textarea id="search-bar"></textarea>
-                    <div class="profile">
-                        <!-- Notificações -->
-                        <!-- Imagem -->
-                        Filipe Rodrigues
+                <div id="search-bar">
+                    <img src="./src/search.svg" alt="search-icon">
+                    <input type="text"></textarea>
+                </div>
+                <div class="profile">
+                    <img src="./src/notifications.svg" alt="notifications-icon">
+                    <div class="profile-img"></div>
+                    Filipe Rodrigues
+                </div>
+                <div class="expanded-profile">
+                    <div class="exp-profile-img"></div>
+                    <div class="expanded-text">
+                        <p>Hi there,</p>
+                        <p>Filipe Rodrigues (@curvu)</p>
                     </div>
                 </div>
-                <div class="header-bottom">
-                    <div class="expanded-profile">
-                        
-                    </div>
-                    <div class="buttons">
-                        <button>new</button>
-                        <button>upload</button>
-                        <button>share</button>
-                    </div>
+                <div class="buttons">
+                    <button>new</button>
+                    <button>upload</button>
+                    <button>share</button>
                 </div>
             </div>
             <div class="container">
                 <div class="projects">
+                    <!-- Render with javascript from github -->
                     <p>your projects</p>
                     <div class="project">
                         <p class="title">super cool project</p>
