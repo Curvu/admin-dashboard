@@ -10,19 +10,33 @@ const getData = async () => {
     return data
 }
 
-getData()
-.then(data => {
-    for(var i = 0; i < data.length; i++) {
-        if (data[i].has_pages == true) {
-            repos.push(
-                {
-                    name: data[i].name,
-                    git: data[i].url,
-                    page: `https://curvu.github.io/${data[i].name}/`
-                }
-            )
+window.addEventListener('DOMContentLoaded', () => {
+    getData()
+    .then(data => {
+        for(var i = 0; i < data.length; i++) {
+            if (data[i].has_pages == true && data[i].name !== 'admin-dashboard') {
+                repos.push(
+                    {
+                        name: data[i].name,
+                        git: data[i].url,
+                        page: `https://curvu.github.io/${data[i].name}/`,
+                        description: data[i].description
+                    }
+                )
+            }
         }
-    }
+    })
+    .then(() => {
+        let element = ''
+        for(var i = 0; i < repos.length; i++) {
+            element = (`
+            <div class="project">
+                <a href="${repos[i].page}" class="project-title">${repos[i].name.split('-').join(' ')}</a>
+                <p class="text">${repos[i].description}</p>
+            </div>
+            `)
+            projects.innerHTML += element;
+        }
+    })
+    console.log(repos)
 })
-
-console.log(repos)
