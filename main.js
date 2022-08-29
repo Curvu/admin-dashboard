@@ -1,8 +1,7 @@
+// Needed containers
 const projects = document.querySelector('.projects')
 const friendList = document.querySelector('.friend-list')
-
-const repos = []
-const friends = []
+const themeBtn = document.getElementById('theme-toggle')
 
 const getData = async (link) => {
     const request = await fetch(link)
@@ -10,7 +9,31 @@ const getData = async (link) => {
     return data
 }
 
+const repos = []
+const friends = []
+
+// Function to switch to dark/light mode
+let storedTheme = localStorage.getItem('theme')
+if (storedTheme) document.documentElement.setAttribute('data-theme', storedTheme)
+
+themeBtn.addEventListener('click', () => {
+    let currentTheme = document.documentElement.getAttribute('data-theme')
+    let target = 'light'
+
+    if (currentTheme === 'light') target = 'dark'
+
+    document.documentElement.setAttribute('data-theme', target)
+    localStorage.setItem('theme', target);
+})
+
+// Render things
 window.addEventListener('DOMContentLoaded', () => {
+    renderRepos()
+    renderTrending()
+})
+
+// Functions to render something
+const renderRepos = () => {
     getData('https://api.github.com/users/curvu/repos')
     .then(data => {
         for(var i = 0; i < data.length; i++) {
@@ -23,29 +46,30 @@ window.addEventListener('DOMContentLoaded', () => {
                 })
             }
         }
-    })
-    .then(() => {
+
         let element = ''
-        for(var i = 0; i < repos.length; i++) {
-            element = (`
+        repos.forEach(repo => {
+            element = `
                 <div class="project">
-                    <p class="project-title">${repos[i].name.split('-').join(' ')}</p>
-                    <p class="text">${repos[i].description}</p>
+                    <p class="project-title">${repo.name.split('-').join(' ')}</p>
+                    <p class="text">${repo.description}</p>
                     <div class="project-buttons">
                         <img class="project-button" src="./src/star.svg" alt="star">
-                        <a target="_blank" href="${repos[i].page}">
+                        <a target="_blank" href="${repo.page}">
                             <img class="project-button" src="./src/view.svg" alt="view">
                         </a>
-                        <a target="_blank" href="${repos[i].code}">
+                        <a target="_blank" href="${repo.code}">
                             <img class="project-button" src="./src/code.svg" alt="code">
                         </a>
                     </div>
                 </div>
-            `)
+            `
             projects.innerHTML += element
-        }
+        })
     })
+}
 
+const renderTrending = () => {
     getData('https://api.github.com/users/curvu/followers')
     .then(data => {
         const num = data.length > 4 ? 4 : data.length
@@ -56,21 +80,17 @@ window.addEventListener('DOMContentLoaded', () => {
                 avatar: data[i].avatar_url
             })
         }
-        return num
-    })
-    .then((num) => {
+        
         let element = ''
-        for(var i = 0; i < num; i++) {
-            element = (`
+        friends.forEach(friend => {
+            element = `
                 <li class="person">
-                    <img src="${friends[i].avatar}" alt="pfp-person1" class="pic">
-                    <a href="${friends[i].url}">@${friends[i].name}</a>
+                    <img src="${friend.avatar}" alt="pfp-person1" class="pic">
+                    <a href="${friend.url}">@${friend.name}</a>
                     <p>Lorem ipsum dolor</p>
                 </li>
-            `)
+            `
             friendList.innerHTML += element
-        }
+        })
     })
-
-    console.log(repos)
-})
+}
