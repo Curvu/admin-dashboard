@@ -28,12 +28,12 @@ themeBtn.addEventListener('click', () => {
 
 // Render things
 window.addEventListener('DOMContentLoaded', () => {
-    renderRepos()
-    renderTrending()
+    getRepos()
+    getTrending()
 })
 
 // Functions to render something
-const renderRepos = () => {
+const getRepos = () => {
     getData('https://api.github.com/users/curvu/repos')
     .then(data => {
         for(var i = 0; i < data.length; i++) {
@@ -69,7 +69,7 @@ const renderRepos = () => {
     })
 }
 
-const renderTrending = () => {
+const getTrending = () => {
     getData('https://api.github.com/users/curvu/followers')
     .then(data => {
         const num = data.length > 4 ? 4 : data.length
@@ -92,5 +92,38 @@ const renderTrending = () => {
             `
             friendList.innerHTML += element
         })
+    })
+}
+
+// Search for specific project
+
+const input = document.getElementById('search-bar-input')
+
+input.oninput = (e) => {
+    renderRepos(filterRepos(e.currentTarget.value))
+}
+
+const filterRepos = (value) => repos.filter((repo) => repo.name.toLowerCase().includes(value.toLowerCase()))
+
+const renderRepos = (filtered) => {
+    let element = ''
+    projects.innerHTML = '' // Clean everything
+    filtered.forEach(repo => {
+        element = `
+            <div class="project">
+                <p class="project-title">${repo.name.split('-').join(' ')}</p>
+                <p class="text">${repo.description}</p>
+                <div class="project-buttons">
+                    <img class="project-button" src="./src/star.svg" alt="star">
+                    <a target="_blank" href="${repo.page}">
+                        <img class="project-button" src="./src/view.svg" alt="view">
+                    </a>
+                    <a target="_blank" href="${repo.code}">
+                        <img class="project-button" src="./src/code.svg" alt="code">
+                    </a>
+                </div>
+            </div>
+        `
+        projects.innerHTML += element
     })
 }
